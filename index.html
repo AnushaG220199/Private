@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💘</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background:
+    linear-gradient(
+        rgba(255,154,158,0.75),
+        rgba(250,208,196,0.75)
+    ),
+    url("photo.jpg") center/150% no-repeat;
+
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        padding: 35px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        width: 320px;
+        position: relative;
+        backdrop-filter: blur(6px);
+        background: rgba(255,255,255,0.85);
+    }
+
+    h1 {
+        color: #e6005c;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+    
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        font-size: 15px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .yes, .primary {
+        background: #e6005c;
+        color: white;
+    }
+
+    .secondary {
+        background: #ffccd5;
+    }
+
+    .yes:hover, .primary:hover, .secondary:hover {
+        transform: scale(1.05);
+    }
+
+   .no {
+    background: #ccc;
+    width: 100%;
+    left: 0;
+    top: 60px;
+}
+
+    .heart {
+        position: absolute;
+        font-size: 20px;
+        animation: floatUp 4s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(0); opacity: 1; }
+        to { transform: translateY(-800px); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+    <h1>Hi 💕</h1>
+    <p>Click to begin</p>
+    <button class="primary" onclick="begin()">✨ Start ✨</button>
+    <p style="font-size:12px;color:#999;">🔊 Sound on recommended</p>
+</div>
+
+
+<script>
+    const card = document.getElementById("card");
+    const music = document.getElementById("bgMusic");
+
+    function begin() {
+    // Prime & play immediately
+  music.volume = 0;
+music.play();
+let v = 0;
+const fade = setInterval(() => {
+    v += 0.05;
+    music.volume = Math.min(v, 0.4);
+    if (v >= 0.4) clearInterval(fade);
+}, 100);
+
+
+    // THEN update the UI
+    card.innerHTML = `
+        <h1>Will you be my Valentine? 💖</h1>
+        <div style="position: relative;">
+            <button class="yes" onclick="startDate()">Yes 💕</button>
+            <button class="no" id="noBtn">No 🙈</button>
+        </div>
+    `;
+
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+}
+
+  
+       function startDate() {
+        card.innerHTML = `
+            <h1>Yay! 💕</h1>
+            <p>What do you want to do today?</p>
+            <button class="primary" onclick="relax()">Relax at home & binge watch 📺</button>
+            <button class="secondary" onclick="goOut()">Go out to eat 🍽️</button>
+        `;
+    }
+
+    function relax() {
+        card.innerHTML = `
+            <h1>Perfect choice 😌</h1>
+            <p>Snacks, series & cuddles 💕</p>
+            <h2>Done! It is a date! ❤️</h2>
+        `;
+    }
+
+    function goOut() {
+        card.innerHTML = `
+            <h1>Yummy choice 😋</h1>
+            <p>Where shall we go?</p>
+            <button class="primary" onclick="final()">Pind 🍛</button>
+            <button class="primary" onclick="final()">Rusi Rasa 🌿</button>
+            <button class="primary" onclick="final()">Anugraha 🍽️</button>
+            <button class="primary" onclick="final()">Murugan Idly 🥞</button>
+        `;
+    }
+
+    function final() {
+        card.innerHTML = `
+            <h1>❤️❤️❤️</h1>
+            <h2>Done!</h2>
+            <p>It is a date! 💕</p>
+        `;
+    }
+
+    // Floating hearts
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }, 600);
+</script>
+
+</body>
+</html>
