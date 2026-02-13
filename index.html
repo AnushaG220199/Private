@@ -156,23 +156,26 @@ const fade = setInterval(() => {
     }
 
     function goOut() {
-        card.innerHTML = `
-            <h1>Yummy choice 😋</h1>
-            <p>Where shall we go?</p>
-            <button class="primary" onclick="final()">Pind 🍛</button>
-            <button class="primary" onclick="final()">Rusi Rasa 🌿</button>
-            <button class="primary" onclick="final()">Anugraha 🍽️</button>
-            <button class="primary" onclick="final()">Murugan Idly 🥞</button>
-        `;
-    }
+    card.innerHTML = `
+        <h1>Yummy choice 😋</h1>
+        <p>Where shall we go?</p>
+        <button class="primary" onclick="final('Pind 🍛')">Pind 🍛</button>
+        <button class="primary" onclick="final('Rusi Rasa 🌿')">Rusi Rasa 🌿</button>
+        <button class="primary" onclick="final('Anugraha 🍽️')">Anugraha 🍽️</button>
+        <button class="primary" onclick="final('Murugan Idly 🥞')">Murugan Idly 🥞</button>
+        <button class="primary" onclick="final('Tiffin Shastra 🍲')">Tiffin Shastra 🍲</button>
+    `;
+}
 
-    function final() {
-        card.innerHTML = `
-            <h1>❤️❤️❤️</h1>
-            <h2>Done!</h2>
-            <p>It is a date! 💕</p>
-        `;
-    }
+
+    function final(place) {
+    card.innerHTML = `
+        <h1>❤️❤️❤️</h1>
+        <h2>Done!</h2>
+        <p>It is a date at <strong>${place}</strong> 💕</p>
+    `;
+}
+
 
     // Floating hearts
     setInterval(() => {
